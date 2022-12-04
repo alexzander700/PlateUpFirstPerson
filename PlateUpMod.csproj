@@ -7,8 +7,8 @@
     <ProjectGuid>{F9086435-4BC0-48AC-B0EE-E2A345DE53C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlateUpMod</RootNamespace>
-    <AssemblyName>PlateUpMod</AssemblyName>
+    <RootNamespace>FirstPersonMod</RootNamespace>
+    <AssemblyName>FirstPersonMod</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -26,7 +26,7 @@
 
   <!-- Absolute Path to PlateUp.exe-->
   <PropertyGroup Condition="$(os)=='Windows_NT'">
-    <PlateUpGameFolder>{PlateUpGameFolder}</PlateUpGameFolder>
+    <PlateUpGameFolder>C:\Program Files (x86)\Steam\steamapps\common\PlateUp\PlateUp</PlateUpGameFolder>
   </PropertyGroup>
   <PropertyGroup Condition="$(os)=='UNIX'">
     <PlateUpGameFolder>/Users/username/Desktop/PlateUp</PlateUpGameFolder>
@@ -102,6 +102,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+	  <Reference Include="CinemachineCore">
+		  <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Cinemachine.dll</HintPath>
+	  </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

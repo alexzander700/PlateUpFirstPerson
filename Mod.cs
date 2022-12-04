@@ -2,7 +2,7 @@
 using KitchenLib;
 using System.Reflection;
 
-namespace PlateUpMod
+namespace FirstPersonMod
 {
     // guid must be unique and is recommended to be in reverse domain name notation
     // mod name that is displayed to the player and listed in the mods menu
@@ -19,8 +19,11 @@ namespace PlateUpMod
 
         private void Awake()
         {
-            Logger.LogInfo("First Person Mod loaded!");
-            CinemachineCore.gameObject.SetActive(false);
+            Mod.Log("First Person Mod loaded!");
+            
         }
+
+        
+
     }
 }
