@@ -1,6 +1,8 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using KitchenLib;
 using System.Reflection;
+using Cinemachine;
 
 namespace FirstPersonMod
 {
@@ -10,20 +12,19 @@ namespace FirstPersonMod
     [BepInPlugin("alexzander700.FirstPerson", "FirstPersonMod", "0.1.0")]
     [BepInProcess("PlateUp.exe")]
     [BepInDependency("kitchenmods.kitchenlib")]
-    public class Mod : BaseMod
+    public class DisableCinemachine : BaseUnityPlugin
     {
-        // Game version this mod is designed for in semver
-        // e.g. ">=1.1.1" for all future
-        // e.g. ">=1.1.1 <=1.2.3" for all until
-        public Mod() : base(">=1.1.1", Assembly.GetExecutingAssembly()) { }
-
         private void Awake()
         {
-            Mod.Log("First Person Mod loaded!");
-            
+            // Disable all Cinemachine components
+            var cinemachineComponents = FindObjectsOfType<CinemachineBrain>();
+            foreach (var component in cinemachineComponents)
+            {
+                component.enabled = false;
+            }
         }
-
-        
-
     }
+
+
+
 }
