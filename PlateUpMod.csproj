@@ -9,19 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FirstPersonMod</RootNamespace>
     <AssemblyName>FirstPersonMod</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'BEPINEX|AnyCPU'">
-    <OutputPath>bin\BEPINEX\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
 
   <!-- Absolute Path to PlateUp.exe-->
@@ -31,11 +21,15 @@
   <PropertyGroup Condition="$(os)=='UNIX'">
     <PlateUpGameFolder>/Users/username/Desktop/PlateUp</PlateUpGameFolder>
   </PropertyGroup>
+	<PropertyGroup Condition="$(os)=='Windows_NT'">
+		<WorkshopMods>C:\Program Files (x86)\Steam\steamapps\workshop\content\1599600</WorkshopMods>
+	</PropertyGroup>
+	<!-- If you have Unix systems, figure it out like everything else you do.-->
 
   <ItemGroup>
-    <Reference Include="BepInEx">
-      <HintPath>$(PlateUpGameFolder)\BepInEx\core\BepInEx.dll</HintPath>
-    </Reference>
+	  <Reference Include="KitchenMods">
+		  <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
+	  </Reference>
     <Reference Include="Controllers">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Controllers.dll</HintPath>
     </Reference>
@@ -68,9 +62,6 @@
     </Reference>
     <Reference Include="Kitchen.RestaurantMode">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenLib-BepInEx">
-      <HintPath>$(PlateUpGameFolder)\BepInEx\plugins\KitchenLib-BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="KitchenMode">
       <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
@@ -105,6 +96,13 @@
 	<Reference Include="Cinemachine">
 	  <HintPath>$(PlateUpGameFolder)\PlateUp_Data\Managed\Cinemachine.dll</HintPath>
 	</Reference>
+	
+	<Reference Include="KitchenLib">
+		<HintPath>$(WorkshopMods)\2898069883\KitchenLib-Workshop.dll</HintPath>
+	</Reference>
+	<Reference Include="Harmony">
+		<HintPath>$(WorkshopMods)\2898033283\0Harmony.dll</HintPath>
+	</Reference>
 	 
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -119,7 +117,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cd $(TargetDir)&#xD;&#xA;copy /y $(TargetName).dll &quot;$(PlateUpGameFolder)\BepInEx\plugins&quot;" />
+    <Exec Command="cd $(TargetDir)&#xD;&#xA;copy /y $(TargetName).dll &quot;$(PlateUpGameFolder)\Mods&quot;" />
   </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
